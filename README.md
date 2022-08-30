@@ -1,4 +1,4 @@
-# slider-module
+# base-module
 srdev93/base-module is a Laravel Module for laravel websites.
 
 # This module is made with the following package:
