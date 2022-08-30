@@ -22,4 +22,5 @@ then run:
 ```php
 php artisan module:migrate base
 php artisan module:seed base
+php artisan module:enable base
 ```
