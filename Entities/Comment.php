@@ -15,4 +15,27 @@ class Comment extends Model
     {
         return \Modules\Base\Database\factories\CommentFactory::new();
     }
+
+    public function parent()
+    {
+        return $this->hasOne(Comment::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Comment::class, 'parent_id')->with('children');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function ($comment) {
+            if (count($comment->children)){
+                foreach ($comment->children as $child){
+                    $child->delete();
+                }
+            }
+        });
+    }
 }

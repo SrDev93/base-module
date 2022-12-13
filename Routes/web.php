@@ -11,6 +11,8 @@
 |
 */
 
-Route::prefix('')->middleware('auth')->group(function() {
+Route::prefix('')->group(function() {
     Route::resource('setting', 'BaseController');
+    Route::resource('comment', 'CommentController');
+    Route::get('comment-status/{id}', 'CommentController@status')->name('comment-status');
 });

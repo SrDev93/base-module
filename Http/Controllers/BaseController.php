@@ -75,16 +75,21 @@ class BaseController extends Controller
             $setting->meta_keywords = $request->meta_keywords;
             $setting->meta_description = $request->meta_description;
             $setting->footer_description = $request->footer_description;
-            $setting->phone = $request->phone;
-            $setting->email = $request->email;
-            $setting->address = $request->address;
 
-            if (isset($request->logo)) {
-                if ($setting->logo) {
-                    File::delete($setting->logo);
+            if (isset($request->logo_1)) {
+                if ($setting->logo_1) {
+                    File::delete($setting->logo_1);
                 }
 
-                $setting->logo = file_store($request->logo, 'assets/uploads/setting/logo/', 'photo_');
+                $setting->logo_1 = file_store($request->logo_1, 'assets/uploads/setting/logo/1/', 'photo_');
+            }
+
+            if (isset($request->logo_2)) {
+                if ($setting->logo_2) {
+                    File::delete($setting->logo_2);
+                }
+
+                $setting->logo_2 = file_store($request->logo_2, 'assets/uploads/setting/logo/2/', 'photo_');
             }
 
             if (isset($request->fav_icon)) {

@@ -38,16 +38,26 @@
                                 <div class="invalid-feedback">لطفا عنوان سایت را وارد کنید</div>
                             </div>
                             <div class="col-md-5">
-                                <label for="logo" class="form-label">لوگو</label>
-                                <input type="file" name="logo" class="form-control" aria-label="لوگو" @if(!$setting->logo) required @endif id="logo" accept="image/*">
-                                <div class="invalid-feedback">لطفا لوگو را بارگزاری کنید</div>
+                                <label for="logo_1" class="form-label">لوگو 1</label>
+                                <input type="file" name="logo_1" class="form-control" aria-label="لوگو 1" @if(!$setting->logo_1) required @endif id="logo_1" accept="image/*">
+                                <div class="invalid-feedback">لطفا لوگو 1 را بارگزاری کنید</div>
                             </div>
                             <div class="col-md-1">
-                                @if($setting->logo)
-                                    <img src="{{ url($setting->logo) }}" class="w-100">
+                                @if($setting->logo_1)
+                                    <img src="{{ url($setting->logo_1) }}" class="w-100">
                                 @endif
                             </div>
                             <div class="col-md-5">
+                                <label for="logo_2" class="form-label">لوگو 2</label>
+                                <input type="file" name="logo_2" class="form-control" aria-label="لوگو 2" @if(!$setting->logo_2) required @endif id="logo_2" accept="image/*">
+                                <div class="invalid-feedback">لطفا لوگو 2 را بارگزاری کنید</div>
+                            </div>
+                            <div class="col-md-1">
+                                @if($setting->logo_2)
+                                    <img src="{{ url($setting->logo_2) }}" class="w-100">
+                                @endif
+                            </div>
+                            <div class="col-md-11">
                                 <label for="fav_icon" class="form-label">آیکن سایت</label>
                                 <input type="file" name="fav_icon" class="form-control" aria-label="آیکن" id="fav_icon" accept="image/*">
                                 <div class="invalid-feedback">لطفا آیکن سایت بارگزاری شود</div>
@@ -68,19 +78,6 @@
                             <div class="col-md-12">
                                 <label for="footer_description" class="form-label">توضیحات فوتر</label>
                                 <input type="text" name="footer_description" class="form-control" id="footer_description" value="{{ $setting->footer_description }}">
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="phone" class="form-label">شماره تماس</label>
-                                <input type="text" name="phone" class="form-control" id="phone" value="{{ $setting->phone }}">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">ایمیل</label>
-                                <input type="text" name="email" class="form-control" id="email" value="{{ $setting->email }}">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="address" class="form-label">آدرس</label>
-                                <input type="text" name="address" class="form-control" id="address" value="{{ $setting->address }}">
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">ارسال فرم</button>
