@@ -17,12 +17,14 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('site_name')->nullable();
             $table->string('title')->nullable();
-            $table->string('logo_1')->nullable();
-            $table->string('logo_2')->nullable();
+            $table->string('logo')->nullable();
             $table->string('fav_icon')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->text('footer_description')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address', 1024)->nullable();
             $table->timestamps();
         });
     }

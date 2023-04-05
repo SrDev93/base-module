@@ -5,7 +5,7 @@ namespace Modules\Base\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comment extends Model
+class Like extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,6 @@ class Comment extends Model
 
     protected static function newFactory()
     {
-        return \Modules\Base\Database\factories\CommentFactory::new();
+        return \Modules\Base\Database\factories\LikeFactory::new();
     }
 }

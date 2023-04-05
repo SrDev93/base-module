@@ -11,7 +11,7 @@
 |
 */
 
-Route::prefix('')->group(function() {
+Route::prefix('admin')->group(function() {
     Route::resource('setting', 'BaseController');
     Route::resource('comment', 'CommentController');
     Route::get('comment-status/{id}', 'CommentController@status')->name('comment-status');
