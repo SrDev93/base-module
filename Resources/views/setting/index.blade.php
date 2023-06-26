@@ -75,13 +75,59 @@
                                 <input type="text" name="phone" class="form-control" id="phone" value="{{ $setting->phone }}">
                             </div>
                             <div class="col-md-6">
+                                <label for="phone_2" class="form-label">شماره تماس 2</label>
+                                <input type="text" name="phone_2" class="form-control" id="phone_2" value="{{ $setting->phone_2 }}">
+                            </div>
+
+                            <div class="col-md-6">
                                 <label for="email" class="form-label">ایمیل</label>
                                 <input type="text" name="email" class="form-control" id="email" value="{{ $setting->email }}">
                             </div>
+                            <div class="col-md-6">
+                                <label for="email_2" class="form-label">ایمیل 2</label>
+                                <input type="text" name="email_2" class="form-control" id="email_2" value="{{ $setting->email_2 }}">
+                            </div>
+
                             <div class="col-md-12">
                                 <label for="address" class="form-label">آدرس</label>
                                 <input type="text" name="address" class="form-control" id="address" value="{{ $setting->address }}">
                             </div>
+                            <div class="col-md-6">
+                                <label for="lat" class="form-label">lat</label>
+                                <input type="text" name="lat" class="form-control" id="lat" value="{{ $setting->lat }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lng" class="form-label">lng</label>
+                                <input type="text" name="lng" class="form-control" id="lng" value="{{ $setting->lng }}">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="contact_banner" class="form-label">بنر صفحه تماس با ما</label>
+                                <input type="file" name="contact_banner" class="form-control" aria-label="بنر" id="contact_banner" @if(!$setting->contact_banner) required @endif accept="image/*">
+                                <div class="invalid-feedback">لطفا بنر صفحه تماس با ما بارگزاری شود</div>
+                            </div>
+                            <div class="col-md-1">
+                                @if($setting->contact_banner)
+                                    <img src="{{ url($setting->contact_banner) }}" style="max-width: 100%;">
+                                @endif
+                            </div>
+                            <div class="col-md-5">
+                                <label for="newsletter_banner" class="form-label">بنر بخش خبرنامه</label>
+                                <input type="file" name="newsletter_banner" class="form-control" aria-label="بنر" id="newsletter_banner" @if(!$setting->newsletter_banner) required @endif accept="image/*">
+                                <div class="invalid-feedback">لطفا بنر بخش خبرنامه بارگزاری شود</div>
+                            </div>
+                            <div class="col-md-1">
+                                @if($setting->newsletter_banner)
+                                    <img src="{{ url($setting->newsletter_banner) }}" style="max-width: 100%;">
+                                @endif
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="editor1" class="form-label">متن قوانین و مقررات</label>
+                                <textarea id="editor1" name="rules" class="cke_rtl" required>{{ $setting->rules }}</textarea>
+                                <div class="invalid-feedback">لطفا متن را وارد کنید</div>
+                            </div>
+
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">ارسال فرم</button>
                                 @method('PATCH')
@@ -94,4 +140,49 @@
         </div>
         <!-- ROW CLOSED -->
     </div>
+
+    @push('scripts')
+        @include('ckfinder::setup')
+        <script>
+            var editor = CKEDITOR.replace('editor1', {
+                // Define the toolbar groups as it is a more accessible solution.
+                toolbarGroups: [
+                    {
+                        "name": "basicstyles",
+                        "groups": ["basicstyles"]
+                    },
+                    {
+                        "name": "links",
+                        "groups": ["links"]
+                    },
+                    {
+                        "name": "paragraph",
+                        "groups": ["list", "blocks"]
+                    },
+                    {
+                        "name": "document",
+                        "groups": ["mode"]
+                    },
+                    {
+                        "name": "insert",
+                        "groups": ["insert"]
+                    },
+                    {
+                        "name": "styles",
+                        "groups": ["styles"]
+                    },
+                    {
+                        "name": "about",
+                        "groups": ["about"]
+                    },
+                    {   "name": 'paragraph',
+                        "groups": ['list', 'blocks', 'align', 'bidi']
+                    }
+                ],
+                // Remove the redundant buttons from toolbar groups defined above.
+                removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
+            });
+            CKFinder.setupCKEditor( editor );
+        </script>
+    @endpush
 @endsection

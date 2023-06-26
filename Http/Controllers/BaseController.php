@@ -76,15 +76,20 @@ class BaseController extends Controller
             $setting->meta_description = $request->meta_description;
             $setting->footer_description = $request->footer_description;
             $setting->phone = $request->phone;
+            $setting->phone_2 = $request->phone_2;
             $setting->email = $request->email;
+            $setting->email_2 = $request->email_2;
             $setting->address = $request->address;
+            $setting->lat = $request->lat;
+            $setting->lng = $request->lng;
+            $setting->rules = $request->rules;
 
             if (isset($request->logo)) {
                 if ($setting->logo) {
                     File::delete($setting->logo);
                 }
 
-                $setting->logo = file_store($request->logo, 'assets/uploads/setting/logo/', 'photo_');
+                $setting->logo = file_store($request->logo, 'assets/uploads/photos/setting_logo/', 'photo_');
             }
 
             if (isset($request->fav_icon)) {
@@ -92,8 +97,24 @@ class BaseController extends Controller
                     File::delete($setting->fav_icon);
                 }
 
-                $setting->fav_icon = file_store($request->fav_icon, 'assets/uploads/setting/icons/', 'photo_');
+                $setting->fav_icon = file_store($request->fav_icon, 'assets/uploads/photos/setting_icon/', 'photo_');
             }
+
+            if (isset($request->contact_banner)) {
+                if ($setting->contact_banner) {
+                    File::delete($setting->contact_banner);
+                }
+
+                $setting->contact_banner = file_store($request->contact_banner, 'assets/uploads/photos/contact_banner/', 'photo_');
+            }
+            if (isset($request->newsletter_banner)) {
+                if ($setting->newsletter_banner) {
+                    File::delete($setting->newsletter_banner);
+                }
+
+                $setting->newsletter_banner = file_store($request->newsletter_banner, 'assets/uploads/photos/newsletter_banner/', 'photo_');
+            }
+
 
             $setting->save();
 
