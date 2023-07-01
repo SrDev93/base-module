@@ -23,6 +23,7 @@ class CreateCommentsTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('text')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('rate')->default(3);
             $table->timestamps();
         });
     }

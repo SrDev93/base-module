@@ -127,7 +127,35 @@
                                 <textarea id="editor1" name="rules" class="cke_rtl" required>{{ $setting->rules }}</textarea>
                                 <div class="invalid-feedback">لطفا متن را وارد کنید</div>
                             </div>
+                            <div class="row-divider"></div>
 
+                            <div class="col-md-12">
+                                <div class="row">
+                                    @foreach($features as $feature)
+                                        <div class="col-md-5">
+                                            <label for="feature_icon" class="form-label">آیکن</label>
+                                            <input type="file" name="feature_icon[]" class="form-control" id="feature_icon">
+                                        </div>
+                                        <div class="col-md-1">
+                                            @if($feature->icon)
+                                                <label for="feature_icon" class="form-label">آیکن</label>
+                                                <img src="{{ url($feature->icon) }}" style="max-width: 50%;">
+                                            @endif
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="feature_title" class="form-label">عنوان ویژگی</label>
+                                            <input type="text" name="feature_title[]" class="form-control" id="feature_title" value="{{ $feature->title }}">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="feature_text" class="form-label">متن ویژگی</label>
+                                            <input type="text" name="feature_text[]" class="form-control" id="feature_text" value="{{ $feature->text }}">
+                                        </div>
+                                        <div class="row-divider"></div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="row-divider"></div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">ارسال فرم</button>
                                 @method('PATCH')

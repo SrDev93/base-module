@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
+use Modules\Base\Entities\Feature;
 use Modules\Base\Entities\Setting;
 
 class BaseController extends Controller
@@ -18,7 +19,9 @@ class BaseController extends Controller
     {
         $setting = Setting::firstOrFail();
 
-        return view('base::setting.index', compact('setting'));
+        $features = Feature::all();
+
+        return view('base::setting.index', compact('setting', 'features'));
     }
 
     /**
@@ -117,6 +120,23 @@ class BaseController extends Controller
 
 
             $setting->save();
+
+            $features = Feature::all();
+            foreach ($features as $key => $feature){
+                if (isset($request->feature_title[$key])){
+                    $feature->title = $request->feature_title[$key];
+                }
+                if (isset($request->feature_text[$key])){
+                    $feature->text = $request->feature_text[$key];
+                }
+                if (isset($request->feature_icon[$key])){
+                    if ($feature->icon){
+                        File::delete($feature->icon);
+                    }
+                    $feature->icon = file_store($request->feature_icon[$key], 'assets/uploads/photos/features/', 'photo_');
+                }
+                $feature->save();
+            }
 
             return redirect()->back()->with('flash_message', 'با موفقیت بروزرسانی شد');
         } catch (\Exception $e) {

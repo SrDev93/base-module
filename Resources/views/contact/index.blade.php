@@ -33,7 +33,7 @@
                                 <tr>
                                     <th class="wd-15p border-bottom-0">نام</th>
                                     <th class="wd-15p border-bottom-0">ایمیل</th>
-                                    <th class="wd-15p border-bottom-0">تلفن</th>
+{{--                                    <th class="wd-15p border-bottom-0">تلفن</th>--}}
                                     <th class="wd-15p border-bottom-0">موضوع</th>
                                     <th class="wd-15p border-bottom-0">متن</th>
                                     <th class="wd-20p border-bottom-0">عملیات</th>
@@ -44,7 +44,7 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td>{{ $item->phone }}</td>
+{{--                                        <td>{{ $item->phone }}</td>--}}
                                         <td>{{ $item->subject }}</td>
                                         <td>{{ $item->text }}</td>
                                         <td>
