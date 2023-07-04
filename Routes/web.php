@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->group(function() {
+Route::prefix('panel')->group(function() {
     Route::resource('setting', 'BaseController');
     Route::resource('newsletter', 'NewsletterController');
     Route::resource('contact', 'ContactController');
