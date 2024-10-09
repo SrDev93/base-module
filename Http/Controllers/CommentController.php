@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Base\Entities\Comment;
-use Modules\Shop\Entities\Product;
 
 class CommentController extends Controller
 {
@@ -112,14 +111,6 @@ class CommentController extends Controller
         try {
             $item->status = !$item->status;
             $item->save();
-
-            if ($item->comments_type == 'Modules\Shop\Entities\Product'){
-                $product = Product::find($item->comments_id);
-                if ($product){
-                    $product->rating = $product->comment()->avg('rate')?$product->comment()->avg('rate'):0;
-                    $product->save();
-                }
-            }
 
             return redirect()->back()->with('flash_message', 'با موفقیت انجام شد');
         }catch (\Exception $e){

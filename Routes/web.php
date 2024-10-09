@@ -13,9 +13,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('panel')->group(function() {
+Route::prefix('admin')->group(function() {
     Route::resource('setting', 'BaseController');
     Route::resource('newsletter', 'NewsletterController');
+    Route::resource('ContactPage', 'ContactPageController');
     Route::resource('contact', 'ContactController');
     Route::resource('comment', 'CommentController');
     Route::get('comment-status/{id}', 'CommentController@status')->name('comment-status');
