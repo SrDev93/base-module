@@ -2,6 +2,7 @@
 
 namespace Modules\Base\Entities;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,6 +15,11 @@ class Comment extends Model
     protected static function newFactory()
     {
         return \Modules\Base\Database\factories\CommentFactory::new();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function parent()
