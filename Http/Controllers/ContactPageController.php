@@ -5,6 +5,7 @@ namespace Modules\Base\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Modules\Base\Entities\ContactPage;
 use Modules\Base\Entities\Feature;
 use Modules\Base\Entities\Setting;
 
@@ -15,11 +16,9 @@ class ContactPageController extends Controller
      */
     public function index()
     {
-        $setting = Setting::firstOrFail();
+        $item = ContactPage::firstOrFail();
 
-        $features = Feature::all();
-
-        return view('base::setting.index', compact('setting', 'features'));
+        return view('base::ContactPage.index', compact('item'));
     }
 
     /**
@@ -57,74 +56,28 @@ class ContactPageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request, ContactPage $ContactPage)
     {
         try {
 
-            $setting->site_name = $request->site_name;
-            $setting->title = $request->title;
-            $setting->meta_keywords = $request->meta_keywords;
-            $setting->meta_description = $request->meta_description;
-            $setting->footer_description = $request->footer_description;
-            $setting->phone = $request->phone;
-            $setting->phone_2 = $request->phone_2;
-            $setting->email = $request->email;
-            $setting->email_2 = $request->email_2;
-            $setting->address = $request->address;
-            $setting->lat = $request->lat;
-            $setting->lng = $request->lng;
-            $setting->rules = $request->rules;
+            $ContactPage->phone_1 = $request->phone_1;
+            $ContactPage->phone_2 = $request->phone_2;
+            $ContactPage->email_1 = $request->email_1;
+            $ContactPage->email_2 = $request->email_2;
+            $ContactPage->address = $request->address;
+            $ContactPage->lat = $request->lat;
+            $ContactPage->lng = $request->lng;
 
-            if (isset($request->logo)) {
-                if ($setting->logo) {
-                    File::delete($setting->logo);
+
+            if (isset($request->banner)) {
+                if ($ContactPage->banner) {
+                    File::delete($ContactPage->banner);
                 }
 
-                $setting->logo = file_store($request->logo, 'assets/uploads/photos/setting_logo/', 'photo_');
+                $ContactPage->banner = file_store($request->banner, 'assets/uploads/photos/banner/', 'photo_');
             }
 
-            if (isset($request->fav_icon)) {
-                if ($setting->fav_icon) {
-                    File::delete($setting->fav_icon);
-                }
-
-                $setting->fav_icon = file_store($request->fav_icon, 'assets/uploads/photos/setting_icon/', 'photo_');
-            }
-
-            if (isset($request->contact_banner)) {
-                if ($setting->contact_banner) {
-                    File::delete($setting->contact_banner);
-                }
-
-                $setting->contact_banner = file_store($request->contact_banner, 'assets/uploads/photos/contact_banner/', 'photo_');
-            }
-            if (isset($request->newsletter_banner)) {
-                if ($setting->newsletter_banner) {
-                    File::delete($setting->newsletter_banner);
-                }
-
-                $setting->newsletter_banner = file_store($request->newsletter_banner, 'assets/uploads/photos/newsletter_banner/', 'photo_');
-            }
-
-
-            $setting->save();
-
-            $features = Feature::all();
-            foreach ($features as $key => $feature){
-                if (isset($request->feature_title[$key])){
-                    $feature->title = $request->feature_title[$key];
-                }
-                if (isset($request->feature_text[$key])){
-                    $feature->text = $request->feature_text[$key];
-                }
-                if (isset($request->feature_icon[$key])){
-                    if ($feature->icon){
-                        File::delete($feature->icon);
-                    }
-                    $feature->icon = file_store($request->feature_icon[$key], 'assets/uploads/photos/features/', 'photo_');
-                }
-                $feature->save();
-            }
+            $ContactPage->save();
 
             return redirect()->back()->with('flash_message', 'با موفقیت بروزرسانی شد');
         } catch (\Exception $e) {
