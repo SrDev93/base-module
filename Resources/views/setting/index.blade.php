@@ -70,6 +70,11 @@
                                 <input type="text" name="footer_description" class="form-control" id="footer_description" value="{{ $setting->footer_description }}">
                             </div>
 
+                            <div class="col-md-12">
+                                <label for="register_description" class="form-label">توضیحات ثبت نام</label>
+                                <textarea name="register_description" class="form-control" id="editor1">{{ $setting->register_description }}</textarea>
+                            </div>
+
                             <div class="row-divider"></div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">ارسال فرم</button>
@@ -85,6 +90,47 @@
     </div>
 
     @push('scripts')
-
+        @include('ckfinder::setup')
+        <script>
+            var editor = CKEDITOR.replace('editor1', {
+                // Define the toolbar groups as it is a more accessible solution.
+                toolbarGroups: [
+                    {
+                        "name": "basicstyles",
+                        "groups": ["basicstyles"]
+                    },
+                    {
+                        "name": "links",
+                        "groups": ["links"]
+                    },
+                    {
+                        "name": "paragraph",
+                        "groups": ["list", "blocks"]
+                    },
+                    {
+                        "name": "document",
+                        "groups": ["mode"]
+                    },
+                    {
+                        "name": "insert",
+                        "groups": ["insert"]
+                    },
+                    {
+                        "name": "styles",
+                        "groups": ["styles"]
+                    },
+                    {
+                        "name": "about",
+                        "groups": ["about"]
+                    },
+                    {   "name": 'paragraph',
+                        "groups": ['list', 'blocks', 'align', 'bidi']
+                    }
+                ],
+                // Remove the redundant buttons from toolbar groups defined above.
+                removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
+            });
+            CKFinder.setupCKEditor( editor );
+        </script>
     @endpush
 @endsection
