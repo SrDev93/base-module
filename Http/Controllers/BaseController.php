@@ -78,6 +78,7 @@ class BaseController extends Controller
             $setting->meta_keywords = $request->meta_keywords;
             $setting->meta_description = $request->meta_description;
             $setting->footer_description = $request->footer_description;
+            $setting->register_description = $request->register_description;
 
             if (isset($request->logo)) {
                 if ($setting->logo) {
