@@ -48,6 +48,16 @@
                                 @endif
                             </div>
                             <div class="col-md-5">
+                                <label for="logo_type" class="form-label">لوگو تایپ</label>
+                                <input type="file" name="logo_type" class="form-control" aria-label="لوگو تایپ" @if(!$setting->logo_type) required @endif id="logo_type" accept="image/*">
+                                <div class="invalid-feedback">لطفا لوگو تایپ را بارگزاری کنید</div>
+                            </div>
+                            <div class="col-md-1">
+                                @if($setting->logo_type)
+                                    <img src="{{ url($setting->logo_type) }}" class="w-100">
+                                @endif
+                            </div>
+                            <div class="col-md-5">
                                 <label for="fav_icon" class="form-label">آیکن سایت</label>
                                 <input type="file" name="fav_icon" class="form-control" aria-label="آیکن" id="fav_icon" accept="image/*">
                                 <div class="invalid-feedback">لطفا آیکن سایت بارگزاری شود</div>

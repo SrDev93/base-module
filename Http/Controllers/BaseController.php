@@ -71,6 +71,7 @@ class BaseController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
+
         try {
 
             $setting->site_name = $request->site_name;
@@ -92,12 +93,17 @@ class BaseController extends Controller
                 if ($setting->fav_icon) {
                     File::delete($setting->fav_icon);
                 }
-
                 $setting->fav_icon = file_store($request->fav_icon, 'assets/uploads/photos/setting_icon/', 'photo_');
             }
 
-            $setting->save();
+            if (isset($request->logo_type)) {
+                if ($setting->logo_type) {
+                    File::delete($setting->logo_type);
+                }
+                $setting->logo_type = file_store($request->logo_type, 'assets/uploads/photos/setting_logo_type/', 'photo_');
+            }
 
+            $setting->save();
             return redirect()->back()->with('flash_message', 'با موفقیت بروزرسانی شد');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->with('err_message', 'خطایی رخ داده است، لطفا مجددا تلاش نمایید');
