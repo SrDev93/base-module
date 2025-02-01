@@ -102,6 +102,18 @@ class BaseController extends Controller
                 }
                 $setting->logo_type = file_store($request->logo_type, 'assets/uploads/photos/setting_logo_type/', 'photo_');
             }
+            if (isset($request->logo_loading)) {
+                if ($setting->logo_loading) {
+                    File::delete($setting->logo_loading);
+                }
+                $setting->logo_loading = file_store($request->logo_loading, 'assets/uploads/photos/setting_logo_loading/', 'photo_');
+            }
+            if (isset($request->logo_footer)) {
+                if ($setting->logo_footer) {
+                    File::delete($setting->logo_footer);
+                }
+                $setting->logo_footer = file_store($request->logo_footer, 'assets/uploads/photos/setting_logo_footer/', 'photo_');
+            }
 
             $setting->save();
             return redirect()->back()->with('flash_message', 'با موفقیت بروزرسانی شد');

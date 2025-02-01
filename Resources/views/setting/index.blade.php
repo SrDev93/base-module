@@ -67,6 +67,36 @@
                                     <img src="{{ url($setting->fav_icon) }}">
                                 @endif
                             </div>
+                            <div class="col-md-5">
+                                <label for="logo_loading" class="form-label">لوگو لودینگ سایت</label>
+                                <input type="file" name="logo_loading" class="form-control" aria-label="آیکن" id="logo_loading" accept="image/*">
+                                <div class="invalid-feedback">لطفا لوگو لودینگ سایت بارگزاری شود</div>
+                            </div>
+                            <div class="col-md-1">
+                                @if($setting->logo_loading)
+                                    <img src="{{ url($setting->logo_loading) }}">
+                                @endif
+                            </div>
+                            <div class="col-md-5">
+                                <label for="logo_footer" class="form-label">لوگو فوتر سایت</label>
+                                <input type="file" name="logo_footer" class="form-control" aria-label="آیکن" id="logo_footer" accept="image/*">
+                                <div class="invalid-feedback">لطفا لوگو فوتر  سایت بارگزاری شود</div>
+                            </div>
+                            <div class="col-md-1">
+                                @if($setting->logo_footer)
+                                    <img src="{{ url($setting->logo_footer) }}">
+                                @endif
+                            </div>
+                            <div class="col-md-5">
+                                <label for="fav_icon" class="form-label">آیکن سایت</label>
+                                <input type="file" name="fav_icon" class="form-control" aria-label="آیکن" id="fav_icon" accept="image/*">
+                                <div class="invalid-feedback">لطفا آیکن سایت بارگزاری شود</div>
+                            </div>
+                            <div class="col-md-1">
+                                @if($setting->fav_icon)
+                                    <img src="{{ url($setting->fav_icon) }}">
+                                @endif
+                            </div>
                             <div class="col-md-6">
                                 <label for="meta_keywords" class="form-label">کلمات کلیدی</label>
                                 <input type="text" name="meta_keywords" data-role="tagsinput" id="meta_keywords" value="{{ $setting->meta_keywords }}" class="form-control">
